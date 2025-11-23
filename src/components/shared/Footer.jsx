@@ -19,7 +19,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#000000] border-t border-white/5 text-[#666666]">
-      <div className="footer sm:footer-horizontal py-10 max-w-7xl mx-auto px-4">
+      <div className="footer sm:footer-horizontal py-10 max-w-[1332] mx-auto px-4">
         {/* Left Section */}
         <aside>
           <Link href="/" className="text-2xl font-bold tracking-wide">

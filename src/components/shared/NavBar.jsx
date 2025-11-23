@@ -16,7 +16,7 @@ export default function NavBar() {
   ];
 
   return (
-    <nav className="fixed py-2 border-b border-white/5 top-0 left-0 w-full bg-[#0a0a0a] shadow-sm z-50">
+    <nav className="fixed py-2 border-b border-white/5 top-0 left-0 w-full bg-[#0a0a0a]/70 backdrop-blur-lg shadow-sm z-50">
       <div className="max-w-12/11 mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold tracking-wide">

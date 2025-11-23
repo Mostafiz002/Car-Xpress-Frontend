@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/shared/NavBar";
 import Footer from "@/components/shared/Footer";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,7 +16,9 @@ export default function RootLayout({ children }) {
         <header>
           <NavBar />
         </header>
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <SessionProvider>{children}</SessionProvider>
+        </main>
         <footer>
           <Footer />
         </footer>
