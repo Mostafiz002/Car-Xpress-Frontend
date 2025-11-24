@@ -20,73 +20,89 @@ const Banner = () => {
     }),
   };
 
+  <div className="min-h-screen w-full relative">
+    {/* Azure Depths */}
+    <div className="absolute inset-0 z-0" style={{}} />
+    {/* Your Content/Components */}
+  </div>;
+
   return (
-    <section className="pt-20 pb-20 px-4 flex flex-col items-center justify-center bg-[#000000]">
-      {/* Animated Div */}
-      <motion.div
-        variants={textVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        custom={1}
-      >
-        <AnimatedText />
-      </motion.div>
+    <div className="min-h-screen w-full relative">
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%)",
+        }}
+      />
+      <section className="pt-40 pb-20 px-4 flex flex-col items-center justify-center bg-[#000000]">
+        {/* Animated Div */}
+        <motion.div
+          variants={textVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={1}
+        >
+          <AnimatedText />
+        </motion.div>
 
-      {/* Animated H1 */}
-      <motion.h1
-        variants={textVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        custom={2}
-      >
-        <ThreeDRotation text="Rent Your Dream Car" />
-      </motion.h1>
+        {/* Animated H1 */}
+        <motion.h1
+          variants={textVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={2}
+        >
+          <ThreeDRotation text="Rent Your Dream Car" />
+        </motion.h1>
 
-      {/* Animated Paragraph */}
-      <motion.p
-        className="text-center text-white max-w-2xl mt-4"
-        variants={textVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        custom={3}
-      >
-        Discover a seamless way to rent premium cars at the best prices. Whether
-        a weekend getaway, a business trip, or your daily commute.
-      </motion.p>
+        {/* Animated Paragraph */}
+        <motion.p
+          className="text-center z-20 text-white max-w-2xl mt-4"
+          variants={textVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={3}
+        >
+          Discover a seamless way to rent premium cars at the best prices.
+          Whether a weekend getaway, a business trip, or your daily commute.
+        </motion.p>
 
-      {/* Animated Button */}
-      <motion.div
-        variants={textVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        custom={4}
-        className="mt-10 mb-10"
-      >
-        <Link href="/all-cars">
-          <Button />
-        </Link>
-      </motion.div>
+        {/* Animated Button */}
+        <motion.div
+          variants={textVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={4}
+          className="mt-10 mb-10 z-20"
+        >
+          <Link href="/all-cars">
+            <Button />
+          </Link>
+        </motion.div>
 
-      {/* Animated Figure */}
-      <motion.figure
-        initial={{ x: -400, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-        style={{ x }}
-      >
-        <Image
-          src="/assets/banner_car.jpg"
-          alt="Banner"
-          width={900}
-          height={910}
-          className="rounded-xl shadow-lg"
-        />
-      </motion.figure>
-    </section>
+        {/* Animated Figure */}
+        <motion.figure
+          initial={{ x: -400, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          style={{ x }}
+          className="z-20"
+        >
+          <Image
+            src="/assets/banner_car.jpg"
+            alt="Banner"
+            width={900}
+            height={910}
+            className="rounded-xl shadow-lg"
+          />
+        </motion.figure>
+      </section>
+    </div>
   );
 };
 

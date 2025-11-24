@@ -5,9 +5,9 @@ import Link from "next/link";
 import LoginBtn from "../shared/LoginBtn";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/provider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaCircleUser } from "react-icons/fa6";
+import useAuth from "@/hooks/useAuth";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
@@ -30,12 +30,12 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="fixed py-2 border-b border-white/5 top-0 left-0 w-full bg-[#0a0a0a]/70 md:backdrop-blur-lg shadow-sm z-50">
+    <nav className="fixed py-2 border-b border-white/5 top-0 left-0 w-full md:backdrop-blur-lg shadow-sm z-50">
       <div className="max-w-12/11 mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold tracking-wide">
           <Image
-            src="/assets/logo.png"
+            src="/assets/logo_new.png"
             alt="CarXpress Logo"
             width={120}
             height={40}
@@ -70,10 +70,7 @@ export default function NavBar() {
               >
                 <div className="w-10 rounded-full overflow-hidden">
                   {user.photoURL ? (
-                    <img
-                      alt="User Avatar"
-                      src={user.photoURL}
-                    />
+                    <img alt="User Avatar" src={user.photoURL} />
                   ) : (
                     <FaCircleUser className="w-full h-full text-gray-300" />
                   )}

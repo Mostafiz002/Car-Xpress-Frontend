@@ -1,19 +1,20 @@
 "use client";
-import ErrorMessage from "@/components/shared/ErrorMessage";
-import { useAuth } from "@/provider/AuthProvider";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { FcGoogle } from "react-icons/fc";
+import React, { useState } from "react";
 import { motion } from "motion/react";
+import ErrorMessage from "@/components/shared/ErrorMessage";
+import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { useRouter, useSearchParams } from "next/navigation";
+import toast from "react-hot-toast";
+import useAuth from "@/hooks/useAuth";
 
-export default function Page() {
-  const { createUser, loading, setUser, setLoading, googleSignIn } = useAuth();
+const Login = () => {
+  const { setUser, loading, setLoading, signIn, googleSignIn } = useAuth();
   const [firebaseError, setFirebaseError] = useState("");
   const route = useRouter();
+  const searchParams = useSearchParams();
 
   const {
     register,
@@ -21,24 +22,24 @@ export default function Page() {
     formState: { errors },
   } = useForm();
 
-  //handle register
-  const handleRegister = async (data) => {
+  //handle login
+  const handleLogin = async (data) => {
     setFirebaseError("");
     try {
-      await createUser(data.email, data.password).then((res) => {
+      await signIn(data.email, data.password).then((res) => {
         setUser(res.user);
-        toast.success("Created User Successfully");
-        route.push("/");
+        toast.success("Login Successful");
+        route.push(searchParams.get("redirect") || "/");
         window.scrollTo(0, 0);
       });
     } catch (err) {
-      setLoading(false);
-      if (err.code === "auth/email-already-in-use") {
-        setFirebaseError("Email already in use");
-      } else if (err.code === "auth/invalid-email") {
-        setFirebaseError("Invalid email address");
+      if (err.code === "auth/user-not-found") {
+        setFirebaseError("No user found with this email.");
+      } else if (err.code === "auth/invalid-credential") {
+        setFirebaseError("invalid credential. Please try again.");
       } else {
         setFirebaseError("Something went wrong");
+        console.log(err);
       }
     } finally {
       setLoading(false);
@@ -50,13 +51,14 @@ export default function Page() {
     setFirebaseError("");
     try {
       googleSignIn().then((res) => {
-        route.push("/");
         window.scrollTo(0, 0);
         setUser(res.user);
-        toast.success("Logged in successfully");
+        route.push(searchParams.get("redirect") || "/");
+        localStorage.removeItem("redirectPath");
+        toast.success("Login Successful");
       });
     } catch {
-      toast.error("Google sign-in failed. Please try again.");
+      toast.error("Google Login failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -72,11 +74,11 @@ export default function Page() {
         className="w-full lg:w-1/2 max-w-md bg-[#0a0a0a] border border-white/5 rounded-xl p-8 shadow-xl"
       >
         <h2 className="text-3xl font-semibold text-white text-center mb-6">
-          Create an Account
+          Welcome Back
         </h2>
 
         <form
-          onSubmit={handleSubmit(handleRegister)}
+          onSubmit={handleSubmit(handleLogin)}
           className="flex flex-col gap-5"
         >
           {/* Email */}
@@ -102,11 +104,6 @@ export default function Page() {
                   value: 6,
                   message: "Password must be at least 6 characters",
                 },
-                pattern: {
-                  value: /^(?=.*[a-z])(?=.*[A-Z]).*$/,
-                  message:
-                    "Password must include at least one uppercase and one lowercase letter",
-                },
               })}
               className="input_field"
               placeholder="Enter your password"
@@ -124,7 +121,7 @@ export default function Page() {
             className={`w-full bg-[#ededed] text-black font-medium cursor-pointer py-3 rounded-lg 
           hover:bg-gray-300 transition disabled:opacity-50`}
           >
-            {loading ? "Creating Account..." : "Register"}
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
@@ -140,15 +137,15 @@ export default function Page() {
         </button>
 
         <p className="text-gray-400 text-sm text-center mt-4">
-          Already have an account?
+          Don&apos;t have an account?
           <Link
-            href="/login"
+            href="/register"
             onClick={() => {
               window.scrollTo(0, 0);
             }}
             className="text-gray-200 hover:underline ml-1"
           >
-            Login
+            Register
           </Link>
         </p>
       </motion.div>
@@ -170,4 +167,6 @@ export default function Page() {
       </motion.div>
     </div>
   );
-}
+};
+
+export default Login;
