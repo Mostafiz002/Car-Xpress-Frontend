@@ -6,20 +6,31 @@ import LoginBtn from "../shared/LoginBtn";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/provider/AuthProvider";
+import toast from "react-hot-toast";
+import { FaCircleUser } from "react-icons/fa6";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname()
-  const {user}=useAuth()
-  console.log(user)
+  const pathname = usePathname();
+  const { user, logOut, setUser } = useAuth();
+  console.log(user);
 
   const links = [
     { name: "Home", href: "/" },
     { name: "All Cars", href: "/all-cars" },
   ];
 
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        toast.success("Logout successful");
+        setUser(null);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <nav className="fixed py-2 border-b border-white/5 top-0 left-0 w-full bg-[#0a0a0a]/70 backdrop-blur-lg shadow-sm z-50">
+    <nav className="fixed py-2 border-b border-white/5 top-0 left-0 w-full bg-[#0a0a0a]/70 md:backdrop-blur-lg shadow-sm z-50">
       <div className="max-w-12/11 mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold tracking-wide">
@@ -37,7 +48,7 @@ export default function NavBar() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                 className={`transition-colors hover:text-[#ededed] ${
+                className={`transition-colors hover:text-[#ededed] ${
                   pathname === item.href ? "text-[#ededed]" : ""
                 }`}
               >
@@ -48,16 +59,69 @@ export default function NavBar() {
         </ul>
 
         {/* Desktop Buttons */}
+
         <div className="hidden md:flex gap-3">
-          <Link href="/login" className="">
-            <LoginBtn />
-          </Link>
-          <Link
-            href="/register"
-            className="btn hover:bg-gray-300 duration-300 bg-[#ededed] text-sm text-[#191919] rounded-lg font-medium"
-          >
-            Register
-          </Link>
+          {user ? (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full overflow-hidden">
+                  {user.photoURL ? (
+                    <img
+                      alt="User Avatar"
+                      src={user.photoURL}
+                    />
+                  ) : (
+                    <FaCircleUser className="w-full h-full text-gray-300" />
+                  )}
+                </div>
+              </div>
+              <div
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-[#111] rounded-xl shadow-lg mt-3 p-3 w-38 border border-white/10"
+              >
+                {/* Add For Rent */}
+                <Link
+                  href="/add-for-rent"
+                  className="block px-3 py-2 rounded-md text-sm text-gray-300 hover:bg-white/10 hover:text-white transition"
+                >
+                  Add For Rent
+                </Link>
+
+                {/* My Cars */}
+                <Link
+                  href="/my-cars"
+                  className="block px-3 py-2 rounded-md text-sm text-gray-300 hover:bg-white/10 hover:text-white transition"
+                >
+                  My Cars
+                </Link>
+
+                {/* Logout */}
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-3 py-2 rounded-md text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 transition"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              {" "}
+              <Link href="/login" className="">
+                <LoginBtn />
+              </Link>
+              <Link
+                href="/register"
+                className="btn hover:bg-gray-300 duration-300 bg-[#ededed] text-sm text-[#191919] rounded-lg font-medium"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -84,7 +148,7 @@ export default function NavBar() {
       {/* Mobile Slide-Over Menu */}
       {open && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-50 md:hidden"
+          className="fixed inset-0 bg-[#2f2f2f4b]  z-50 md:hidden"
           onClick={() => setOpen(false)}
         >
           <div
@@ -109,36 +173,81 @@ export default function NavBar() {
             </button>
 
             {/* Mobile Links */}
-            <ul className="flex flex-col gap-6 text-lg font-medium">
+            <ul className="flex flex-col gap-6 text-base font-medium">
               {links.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                   className={`transition-colors ${
-                  pathname === item.href ? "text-[#ededed]" : "text-[#666666]"
-                }`}
+                    className={`transition-colors ${
+                      pathname === item.href
+                        ? "text-[#ededed]"
+                        : "text-[#666666]"
+                    }`}
                     onClick={() => setOpen(false)}
                   >
                     {item.name}
                   </Link>
                 </li>
               ))}
+              {user && (
+                <>
+                  <li>
+                    {" "}
+                    <Link
+                      href="/add-for-rent"
+                      className={`transition-colors ${
+                        pathname === "add-for-rent"
+                          ? "text-[#ededed]"
+                          : "text-[#666666]"
+                      }`}
+                      onClick={() => setOpen(false)}
+                    >
+                      Add For Rent
+                    </Link>
+                  </li>
+                  <li>
+                    {" "}
+                    <Link
+                      href="/my-cars"
+                      className={`transition-colors ${
+                        pathname === "add-for-rent"
+                          ? "text-[#ededed]"
+                          : "text-[#666666]"
+                      }`}
+                      onClick={() => setOpen(false)}
+                    >
+                      My Cars
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
 
             {/* Mobile Buttons */}
             <div className="mt-10 flex flex-col gap-4">
-              <Link
-                href="/login"
-                className="px-4 py-2 border rounded-md text-center"
-              >
-                Login
-              </Link>
-              <Link
-                href="/register"
-                className="px-4 py-2 bg-[#ededed] text-black font-medium! rounded-md text-center"
-              >
-                Register
-              </Link>
+              {user ? (
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 bg-[#ededed] text-black font-medium! rounded-md text-center"
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="px-4 py-2 border rounded-md text-center"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="px-4 py-2 bg-[#ededed] text-black font-medium! rounded-md text-center"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
