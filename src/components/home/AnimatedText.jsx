@@ -78,7 +78,7 @@ const StyledWrapper = styled.div`
       background-position: 180px;
     }
     100% {
-      background-position: 260px;
+      background-position: 264px;
     }
   }
 `;

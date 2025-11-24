@@ -40,6 +40,8 @@ export default function Page() {
       } else {
         setFirebaseError("Something went wrong");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -139,7 +141,13 @@ export default function Page() {
 
         <p className="text-gray-400 text-sm text-center mt-4">
           Already have an account?
-          <Link href="/login" className="text-gray-200 hover:underline ml-1">
+          <Link
+            href="/login"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+            className="text-gray-200 hover:underline ml-1"
+          >
             Login
           </Link>
         </p>
