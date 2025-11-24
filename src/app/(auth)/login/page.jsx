@@ -1,4 +1,7 @@
 "use client";
+export const dynamic = "force-dynamic";
+
+
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import ErrorMessage from "@/components/shared/ErrorMessage";
@@ -10,7 +13,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import useAuth from "@/hooks/useAuth";
 
-const Login = () => {
+const Page = () => {
   const { setUser, loading, setLoading, signIn, googleSignIn } = useAuth();
   const [firebaseError, setFirebaseError] = useState("");
   const route = useRouter();
@@ -169,4 +172,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Page;
