@@ -5,10 +5,13 @@ import Link from "next/link";
 import LoginBtn from "../shared/LoginBtn";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/provider/AuthProvider";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname()
+  const {user}=useAuth()
+  console.log(user)
 
   const links = [
     { name: "Home", href: "/" },
