@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React from "react";
 
 const brandLogos = {
@@ -14,13 +15,19 @@ const brandLogos = {
 
 const CarCard = ({ car }) => {
   return (
-    <div className="bg-[#0a0a0a] text-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition flex flex-col w-full border border-white/10 hover:-translate-y-1 hover:scale-101 duration-300">
+    <div
+      // initial={{ opacity: 0, }}
+      // whileInView={{ opacity: 1, }}
+      // transition={{ duration: 0.6,ease:'easeInOut', delay: index * 0.1 }}
+      className="bg-[#0a0a0a] text-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition flex flex-col w-full border border-white/10 hover:-translate-y-1 hover:scale-101 duration-300"
+    >
       {/* Car Image */}
-      <div className="relative w-full h-64 overflow-hidden">
-        <img
+      <div className="relative w-full h-64 overflow-hidden rounded-t-lg">
+        <Image
           src={car.image}
           alt={car.title}
-          className="w-full h-full object-cover rounded-t-lg hover:scale-104 transition-transform duration-300"
+          fill
+          className="object-cover rounded-t-lg hover:scale-105 transition-transform duration-300"
         />
       </div>
 

@@ -27,8 +27,8 @@ const TopRated = () => {
         premium rental experience.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {cars.map((car) => (
-          <CarCard key={car._id} car={car} />
+        {cars.map((car,i) => (
+          <CarCard key={car._id} car={car} index={i} />
         ))}
       </div>
     </div>

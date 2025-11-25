@@ -47,7 +47,8 @@ const Page = () => {
             reset();
             setFileName("");
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log(err)
             toast.error("Failed to add your car for RENT");
           });
       })

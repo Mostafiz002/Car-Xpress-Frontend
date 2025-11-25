@@ -9,7 +9,7 @@ import ThreeDRotation from "./ThreeDRotation";
 
 const Banner = () => {
   const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, 400]);
 
   const textVariant = {
     hidden: { opacity: 0, y: 30 },

@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 });
 
 const useAxiosSecure = () => {
-  const { user, signOutUser } = useAuth();
+  const { user, logOut } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const useAxiosSecure = () => {
         const status = err?.response?.status;
 
         if (status === 401 || status === 403) {
-          await signOutUser();
+          await logOut();
           router.push("/login");
         }
 
