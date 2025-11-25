@@ -60,7 +60,7 @@ const Banner = () => {
 
         {/* Animated Paragraph */}
         <motion.p
-          className="text-center z-20 text-white max-w-2xl mt-4"
+          className="text-center z-20 text-white/90 max-w-2xl mt-4"
           variants={textVariant}
           initial="hidden"
           whileInView="visible"

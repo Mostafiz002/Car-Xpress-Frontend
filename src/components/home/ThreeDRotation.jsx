@@ -36,7 +36,7 @@ const ThreeDRotation = ({text}) => {
 
     return (
         <motion.div
-            className="text-4xl md:text-6xl font-semibold text-center mt-4"
+            className="text-[42px] md:text-6xl font-semibold text-center mt-4"
             style={{perspective: "1000px", transformStyle: "preserve-3d"}}
             initial="hidden"
             animate={controls}
