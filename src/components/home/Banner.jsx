@@ -9,7 +9,7 @@ import ThreeDRotation from "./ThreeDRotation";
 
 const Banner = () => {
   const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, 700]);
 
   const textVariant = {
     hidden: { opacity: 0, y: 30 },
@@ -35,7 +35,7 @@ const Banner = () => {
             "radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%)",
         }}
       />
-      <section className="pt-40 pb-20 px-4 flex flex-col items-center justify-center bg-[#000000]">
+      <section className="pt-40 pb-20 px-4 flex flex-col items-center justify-center bg-[#000000] overflow-hidden">
         {/* Animated Div */}
         <motion.div
           variants={textVariant}
