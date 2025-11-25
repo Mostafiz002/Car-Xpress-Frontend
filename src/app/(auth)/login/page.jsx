@@ -1,6 +1,4 @@
 "use client";
-export const dynamic = "force-dynamic";
-
 
 import React, { useState } from "react";
 import { motion } from "motion/react";
@@ -9,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import useAuth from "@/hooks/useAuth";
 
@@ -17,7 +15,6 @@ const Page = () => {
   const { setUser, loading, setLoading, signIn, googleSignIn } = useAuth();
   const [firebaseError, setFirebaseError] = useState("");
   const route = useRouter();
-  const searchParams = useSearchParams();
 
   const {
     register,
@@ -32,7 +29,9 @@ const Page = () => {
       await signIn(data.email, data.password).then((res) => {
         setUser(res.user);
         toast.success("Login Successful");
-        route.push(searchParams.get("redirect") || "/");
+        const redirect = localStorage.getItem("redirectPath") || "/";
+        route.push(redirect);
+        localStorage.removeItem("redirectPath");
         window.scrollTo(0, 0);
       });
     } catch (err) {
@@ -56,7 +55,8 @@ const Page = () => {
       googleSignIn().then((res) => {
         window.scrollTo(0, 0);
         setUser(res.user);
-        route.push(searchParams.get("redirect") || "/");
+        const redirect = localStorage.getItem("redirectPath") || "/";
+        route.push(redirect);
         localStorage.removeItem("redirectPath");
         toast.success("Login Successful");
       });

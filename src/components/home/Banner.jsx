@@ -89,7 +89,7 @@ const Banner = () => {
         <motion.figure
           initial={{ x: -400, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
           style={{ x }}
           className="z-20"
         >

@@ -12,12 +12,17 @@ export function PrivateRoute({ children }) {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push(`/login?redirect=${pathname}`);
+      localStorage.setItem("redirectPath", pathname); // save path
+      router.push("/login"); // just go to login page
     }
   }, [user, loading, pathname, router]);
 
   if (loading) {
-    return <div className="h-screen flex justify-center items-center"><Loader/></div>;
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
   }
 
   if (!user) return null;
