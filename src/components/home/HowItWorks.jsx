@@ -21,7 +21,7 @@ const HowItWorks = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-18">
         {/* Step 1 */}
         <div
-          className={`bg-[#0a0a0a] border border-white/10 rounded-xl p-7 text-center 
+          className={`bg-black border border-white/10 rounded-xl p-7 text-center 
                         hover:border-white/30 transition duration-300`}
         >
           <FaCarSide size={40} className="mx-auto text-gray-300" />
@@ -33,7 +33,7 @@ const HowItWorks = () => {
 
         {/* Step 2 */}
         <div
-          className={`bg-[#0a0a0a] border border-white/10 rounded-xl p-7 text-center
+          className={`bg-black border border-white/10 rounded-xl p-7 text-center
                         hover:border-white/30 transition duration-300`}
         >
           <FaPhoneAlt size={40} className="mx-auto text-gray-300" />
@@ -45,7 +45,7 @@ const HowItWorks = () => {
 
         {/* Step 3 */}
         <div
-          className={`bg-[#0a0a0a] border border-white/10 rounded-xl p-7 text-center
+          className={`bg-black border border-white/10 rounded-xl p-7 text-center
                         hover:border-white/30 transition duration-300`}
         >
           <FaCheckCircle size={40} className="mx-auto text-gray-300" />
@@ -57,7 +57,7 @@ const HowItWorks = () => {
 
         {/* Step 4 */}
         <div
-          className={`bg-[#0a0a0a] border border-white/10 rounded-xl p-7 text-center
+          className={`bg-black border border-white/10 rounded-xl p-7 text-center
                         hover:border-white/30 transition duration-300`}
         >
           <FaClipboardList size={40} className="mx-auto text-gray-300" />
