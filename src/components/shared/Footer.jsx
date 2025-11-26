@@ -45,6 +45,9 @@ const Footer = () => {
           <Link href="/about-us" className={link_style}>
             About Us
           </Link>
+          <Link href="/faq" className={link_style}>
+            FAQ
+          </Link>
           <Link href="/login" className={link_style}>
             Login
           </Link>

@@ -19,6 +19,7 @@ export default function NavBar() {
     { name: "Home", href: "/" },
     { name: "All Cars", href: "/all-cars" },
     { name: "About Us", href: "/about-us" },
+    { name: "FAQ", href: "/faq" },
   ];
 
   const handleLogout = () => {

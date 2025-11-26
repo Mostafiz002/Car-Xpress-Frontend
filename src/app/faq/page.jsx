@@ -1,6 +1,4 @@
-import WhyChooseUs from "@/components/about_us/WhyChooseUs";
-import ClientLogo from "@/components/home/ClientLogo";
-import Testimonial from "@/components/home/Testimonial";
+import Faq from "@/components/home/Faq";
 import React from "react";
 
 const page = () => {
@@ -16,12 +14,9 @@ const page = () => {
       {/* Content */}
       <div className="relative z-10 pb-24 ">
         <div className="flex flex-col bg-[#11142009] backdrop-blur-2xl border-b border-white/10 items-center mb-12 pt-36 md:pt-44 pb-16 md:pb-24 ">
-          <h2 className="section_heading text-center">About Us</h2>
+          <h2 className="section_heading text-center">FAQ</h2>
         </div>
-
-        <Testimonial />
-        <ClientLogo direction={"right"} />
-        <WhyChooseUs />
+        <Faq/>
       </div>
     </div>
   );
