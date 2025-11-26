@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const brandLogos = {
@@ -32,29 +33,32 @@ const CarCard = ({ car }) => {
       </div>
 
       {/* Title & Brand */}
-      <div className="p-4">
-        <div className="flex items-center justify-between mt-2">
-          {/* Brand Image */}
+      <div className="p-4  flex flex-col justify-between ">
+        <div>
+          <div className="flex items-center justify-between mt-2">
+            {/* Brand Image */}
 
-          <img
-            src={brandLogos[car.brand]}
-            alt={car.brand}
-            className="w-14 h-14 p-3 border rounded-full border-white/10 object-contain"
-          />
+            <img
+              src={brandLogos[car.brand]}
+              alt={car.brand}
+              className="w-14 h-14 p-3 border rounded-full border-white/10 object-contain"
+            />
 
-          {/* Title & Brand Name */}
-          <div className="ml-4 flex-1">
-            <h3 className="text-lg font-bold text-white">{car.title}</h3>
-            <p className="text-gray-300 text-sm mt-1">{car.brand}</p>
+            {/* Title & Brand Name */}
+            <div className="ml-4 flex-1">
+              <h3 className="text-lg font-bold text-white">{car.title}</h3>
+              <p className="text-gray-300 text-sm mt-1">{car.brand}</p>
+            </div>
+          </div>
+
+          {/* Short Description */}
+          <div className="mt-3">
+            <p className="text-gray-400 text-sm">{car.shortDescription}</p>
           </div>
         </div>
 
-        {/* Short Description */}
-        <div className="mt-3">
-          <p className="text-gray-400 text-sm">{car.shortDescription}</p>
-        </div>
-
-        {/* Engine */}
+       <div className="">
+         {/* Engine */}
         <div className="flex justify-between mt-6">
           <span className="text-gray-300 text-sm font-medium">Engine</span>
           <span className="text-white text-sm font-semibold">{car.engine}</span>
@@ -74,7 +78,13 @@ const CarCard = ({ car }) => {
           <span className=" font-bold text-lg">৳{car.price}</span>
         </div>
         {/* Button */}
-        <button className="button_primary w-full mt-6 py-3! ">Details</button>
+        <Link
+          href={`/car-details/${car._id}`}
+          className="btn mt-6 w-full py-1.5 px-3  bg-[#ededed] text-sm text-[#111] rounded-lg font-medium cursor-pointer transition hover:bg-gray-300"
+        >
+          Details
+        </Link>
+       </div>
       </div>
     </div>
   );

@@ -16,10 +16,6 @@ body {
   overflow-x: hidden;
 }
 
-.button_primary {
-  @apply py-1.5 px-3 bg-[#ededed] text-sm text-[#111] rounded-lg font-medium cursor-pointer transition hover:bg-gray-300;
-}
-
 .input_field {
   @apply px-4 py-3 rounded-lg bg-[#0a0a0a] border border-white/10 text-white focus:outline-none hover:border-white/30 focus:border-white/30 duration-200;
 }
