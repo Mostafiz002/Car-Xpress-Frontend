@@ -39,14 +39,6 @@ const Page = () => {
 
   const categories = ["BMW", "Audi", "Mercedes-Benz", "Nissan", "Mitsubishi"];
 
-  if (isLoading) {
-    return (
-      <div className="h-screen flex items-center justify-center">
-        <Loader />
-      </div>
-    );
-  }
-
   return (
     <div className="mt-20 max-w-[1300px] mx-auto px-4 py-24">
       <div className="flex flex-col items-center mb-12">
@@ -134,22 +126,27 @@ const Page = () => {
         )}
       </AnimatePresence>
 
-      {/* Cars Grid */}
-      <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <AnimatePresence>
-          {cars.map((car, i) => (
-            <motion.div
-              key={car._id ?? i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.3, delay: i * 0.1 }}
-            >
-              <CarCard car={car} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      {isLoading ? (
+        <div className="py-10 flex items-center justify-center">
+          <Loader />
+        </div>
+      ) : (
+        <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <AnimatePresence>
+            {cars.map((car, i) => (
+              <motion.div
+                key={car._id ?? i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.2, delay: i * 0.1 }}
+              >
+                <CarCard car={car} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      )}
     </div>
   );
 };

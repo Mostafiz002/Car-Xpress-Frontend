@@ -16,12 +16,7 @@ const brandLogos = {
 
 const CarCard = ({ car }) => {
   return (
-    <div
-      // initial={{ opacity: 0, }}
-      // whileInView={{ opacity: 1, }}
-      // transition={{ duration: 0.6,ease:'easeInOut', delay: index * 0.1 }}
-      className="bg-[#0a0a0a] text-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition flex flex-col w-full border border-white/10 hover:-translate-y-1 hover:scale-101 duration-300"
-    >
+    <div className="bg-[#0a0a0a] text-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition flex flex-col h-full w-full border border-white/10 hover:-translate-y-1 hover:scale-101 duration-300">
       {/* Car Image */}
       <div className="relative w-full h-64 overflow-hidden rounded-t-lg">
         <Image
@@ -33,58 +28,56 @@ const CarCard = ({ car }) => {
       </div>
 
       {/* Title & Brand */}
-      <div className="p-4  flex flex-col justify-between ">
+      <div className="p-4 flex flex-col justify-between flex-1">
         <div>
           <div className="flex items-center justify-between mt-2">
-            {/* Brand Image */}
-
             <img
               src={brandLogos[car.brand]}
               alt={car.brand}
               className="w-14 h-14 p-3 border rounded-full border-white/10 object-contain"
             />
 
-            {/* Title & Brand Name */}
             <div className="ml-4 flex-1">
               <h3 className="text-lg font-bold text-white">{car.title}</h3>
               <p className="text-gray-300 text-sm mt-1">{car.brand}</p>
             </div>
           </div>
-
-          {/* Short Description */}
           <div className="mt-3">
             <p className="text-gray-400 text-sm">{car.shortDescription}</p>
           </div>
         </div>
 
-       <div className="">
-         {/* Engine */}
-        <div className="flex justify-between mt-6">
-          <span className="text-gray-300 text-sm font-medium">Engine</span>
-          <span className="text-white text-sm font-semibold">{car.engine}</span>
-        </div>
+        <div>
+          {/* Engine */}
+          <div className="flex justify-between mt-6">
+            <span className="text-gray-300 text-sm font-medium">Engine</span>
+            <span className="text-white text-sm font-semibold">
+              {car.engine}
+            </span>
+          </div>
 
-        {/* Location */}
-        <div className="mt-3 flex justify-between">
-          <span className="text-gray-300 text-sm font-medium">Location</span>
-          <span className="text-white text-sm font-semibold">
-            {car.location}
-          </span>
-        </div>
+          {/* Location */}
+          <div className="mt-3 flex justify-between">
+            <span className="text-gray-300 text-sm font-medium">Location</span>
+            <span className="text-white text-sm font-semibold">
+              {car.location}
+            </span>
+          </div>
 
-        {/* Price */}
-        <div className="mt-3 flex justify-between items-center ">
-          <span className="text-gray-300 text-sm font-medium">Price</span>
-          <span className=" font-bold text-lg">৳{car.price}</span>
+          {/* Price */}
+          <div className="mt-3 flex justify-between items-center">
+            <span className="text-gray-300 text-sm font-medium">Price</span>
+            <span className="font-bold text-lg">৳{car.price}</span>
+          </div>
+
+          {/* btn */}
+          <Link
+            href={`/car-details/${car._id}`}
+            className="btn mt-6 w-full py-1.5 px-3 bg-[#ededed] text-sm text-[#111] rounded-lg font-medium cursor-pointer transition hover:bg-gray-300"
+          >
+            Details
+          </Link>
         </div>
-        {/* Button */}
-        <Link
-          href={`/car-details/${car._id}`}
-          className="btn mt-6 w-full py-1.5 px-3  bg-[#ededed] text-sm text-[#111] rounded-lg font-medium cursor-pointer transition hover:bg-gray-300"
-        >
-          Details
-        </Link>
-       </div>
       </div>
     </div>
   );
