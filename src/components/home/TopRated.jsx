@@ -4,12 +4,13 @@ import CarCard from "../shared/CarCard";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "@/hooks/useAuth";
 import useAxios from "@/hooks/useAxios";
+import Loader from "../shared/Loader";
 
 const TopRated = () => {
   const { user } = useAuth();
   const axios = useAxios();
 
-  const { data: cars = [] } = useQuery({
+  const { data: cars = [], isLoading } = useQuery({
     queryKey: ["limited-cars", user?.email],
     queryFn: async () => {
       const res = await axios(`/cars?limit=6`);
@@ -17,7 +18,13 @@ const TopRated = () => {
     },
   });
 
-  console.log(cars);
+  if (isLoading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center flex-col pt-20 pb-24 max-w-[1332] mx-auto px-4">
@@ -27,7 +34,7 @@ const TopRated = () => {
         premium rental experience.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {cars.map((car,i) => (
+        {cars.map((car, i) => (
           <CarCard key={car._id} car={car} index={i} />
         ))}
       </div>

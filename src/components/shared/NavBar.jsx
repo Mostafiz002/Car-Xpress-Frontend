@@ -123,7 +123,7 @@ export default function NavBar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden flex items-center"
+          className="md:hidden flex items-center cursor-pointer"
           onClick={() => setOpen(true)}
         >
           <svg
@@ -153,7 +153,7 @@ export default function NavBar() {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
-            <button onClick={() => setOpen(false)} className="mb-8">
+            <button onClick={() => setOpen(false)} className="mb-8 cursor-pointer">
               <svg
                 className="w-6 h-6"
                 fill="none"
