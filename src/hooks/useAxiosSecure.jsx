@@ -6,7 +6,7 @@ import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://car-xpress-api-server.vercel.app",
 });
 
 const useAxiosSecure = () => {

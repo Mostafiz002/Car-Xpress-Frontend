@@ -48,8 +48,13 @@ const Page = () => {
             setFileName("");
           })
           .catch((err) => {
-            console.log(err)
-            toast.error("Failed to add your car for RENT");
+            if (err.response?.status === 429) {
+              toast.error(
+                err.response.data.message || "You have reached your car limit!"
+              );
+            } else {
+              toast.error("Failed to add your car for RENT");
+            }
           });
       })
       .catch((err) => {

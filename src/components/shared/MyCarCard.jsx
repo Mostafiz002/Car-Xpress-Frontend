@@ -78,7 +78,7 @@ const MyCarCard = ({ car }) => {
           </Link>
           <button
             onClick={handleDelete}
-            className="flex-1 py-2 flex justify-center items-center gap-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 cursor-pointer duration-200"
+            className="flex-1 py-2 flex justify-center items-center gap-2 bg-red-500/30 text-red-400 rounded-lg font-medium hover:bg-red-700/60 cursor-pointer duration-200"
           >
             <AiOutlineDelete size={20} />
           </button>

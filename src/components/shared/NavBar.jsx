@@ -18,6 +18,7 @@ export default function NavBar() {
   const links = [
     { name: "Home", href: "/" },
     { name: "All Cars", href: "/all-cars" },
+    { name: "About Us", href: "/about-us" },
   ];
 
   const handleLogout = () => {

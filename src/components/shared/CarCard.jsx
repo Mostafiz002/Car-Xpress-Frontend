@@ -43,7 +43,7 @@ const CarCard = ({ car }) => {
             </div>
           </div>
           <div className="mt-3">
-            <p className="text-gray-400 text-sm">{car.shortDescription}</p>
+            <p className="text-gray-400 line-clamp-1 text-sm">{car.longDescription}</p>
           </div>
         </div>
 

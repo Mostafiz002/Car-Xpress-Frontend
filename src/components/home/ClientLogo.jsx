@@ -12,7 +12,7 @@ const logos = [
   "/assets/openai.png",
 ];
 
-const ClientLogo = () => {
+const ClientLogo = ({direction}) => {
   return (
     <div className="max-w-[1132px] mx-auto flex flex-col md:flex-row items-center md:items-center pb-24 -mt-10 z-300 overflow-hidden px-4 gap-7">
       {/* Left */}
@@ -24,7 +24,7 @@ const ClientLogo = () => {
 
       {/* Right */}
       <div className="w-full">
-        <Marquee speed={50} direction="left">
+        <Marquee speed={50} direction={direction}>
           {logos.map((logo, i) => (
             <div key={i} className="flex items-center justify-center px-8 py-4">
               <img

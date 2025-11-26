@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="">
       <Banner />
-      <ClientLogo />
+      <ClientLogo direction={"left"} />
       <TopRated />
       <HowItWorks />
       <Testimonial />
