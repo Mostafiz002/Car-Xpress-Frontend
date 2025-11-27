@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const AnimatedText = () => {
   return (
-    <StyledWrapper className="flex justify-center">
+    <StyledWrapper className="flex justify-center z-10">
       <a className="btn-shine">Drive Your Ambition</a>
     </StyledWrapper>
   );

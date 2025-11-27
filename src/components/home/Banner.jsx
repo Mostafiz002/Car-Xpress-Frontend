@@ -6,8 +6,12 @@ import { motion, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
 import Button from "../shared/Button";
 import ThreeDRotation from "./ThreeDRotation";
+import dynamic from "next/dynamic";
 
 const Banner = () => {
+  const AnimatedText = dynamic(() => import("./AnimatedText"), { ssr: false });
+  const Button = dynamic(() => import("../shared/Button"), { ssr: false });
+
   const { scrollYProgress } = useScroll();
   const x = useTransform(scrollYProgress, [0, 1], [0, 700]);
 
@@ -20,12 +24,6 @@ const Banner = () => {
     }),
   };
 
-  <div className="min-h-screen w-full relative">
-    {/* Azure Depths */}
-    <div className="absolute inset-0 z-0" style={{}} />
-    {/* Your Content/Components */}
-  </div>;
-
   return (
     <div className="min-h-screen w-full relative">
       <div
@@ -35,9 +33,10 @@ const Banner = () => {
             "radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%)",
         }}
       />
-      <section className="pt-40 pb-20 px-4 flex flex-col items-center justify-center bg-[#000000] overflow-hidden">
+      <section className="pt-40 pb-20 px-4 flex flex-col items-center justify-center bg-[#000000] overflow-hidden z-10">
         {/* Animated Div */}
         <motion.div
+          className="z-10"
           variants={textVariant}
           initial="hidden"
           whileInView="visible"
