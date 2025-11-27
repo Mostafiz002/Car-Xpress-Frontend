@@ -8,12 +8,14 @@ import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaCircleUser } from "react-icons/fa6";
 import useAuth from "@/hooks/useAuth";
+import dynamic from "next/dynamic";
+import Loader from "./Loader";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const { user, logOut, setUser } = useAuth();
-  console.log(user);
+  const { user, logOut, setUser, loading } = useAuth();
+  // console.log(user);
 
   const links = [
     { name: "Home", href: "/" },
@@ -30,6 +32,8 @@ export default function NavBar() {
       })
       .catch((err) => console.log(err));
   };
+
+  const LoginBtn = dynamic(() => import("../shared/LoginBtn"), { ssr: false });
 
   return (
     <nav className="fixed py-2   md:border-b border-white/5 top-0 left-0 w-full md:backdrop-blur-lg shadow-sm z-50">
@@ -63,7 +67,11 @@ export default function NavBar() {
         {/* Desktop Buttons */}
 
         <div className="hidden md:flex gap-3">
-          {user ? (
+          {loading ? (
+            <div className="flex items-center justify-center">
+              <Loader />
+            </div>
+          ) : user ? (
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -82,23 +90,18 @@ export default function NavBar() {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-[#111] rounded-xl shadow-lg mt-3 p-3 w-38 border border-white/10"
               >
-                {/* Add For Rent */}
                 <Link
                   href="/add-for-rent"
                   className="block px-3 py-2 rounded-md text-sm text-gray-300 hover:bg-white/10 hover:text-white transition"
                 >
                   Add For Rent
                 </Link>
-
-                {/* My Cars */}
                 <Link
                   href="/my-cars"
                   className="block px-3 py-2 rounded-md text-sm text-gray-300 hover:bg-white/10 hover:text-white transition"
                 >
                   My Cars
                 </Link>
-
-                {/* Logout */}
                 <button
                   onClick={handleLogout}
                   className="block w-full text-left px-3 py-2 rounded-md text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 transition"
@@ -109,8 +112,7 @@ export default function NavBar() {
             </div>
           ) : (
             <>
-              {" "}
-              <Link href="/login" className="">
+              <Link href="/login">
                 <LoginBtn />
               </Link>
               <Link
@@ -155,7 +157,10 @@ export default function NavBar() {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
-            <button onClick={() => setOpen(false)} className="mb-8 cursor-pointer">
+            <button
+              onClick={() => setOpen(false)}
+              className="mb-8 cursor-pointer"
+            >
               <svg
                 className="w-6 h-6"
                 fill="none"

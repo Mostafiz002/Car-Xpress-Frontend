@@ -6,18 +6,27 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "@/hooks/useAuth";
 import MyCarCard from "@/components/shared/MyCarCard";
 import { motion } from "framer-motion";
+import Loader from "@/components/shared/Loader";
 
 const page = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const { data: cars = [] } = useQuery({
+  const { data: cars = [], isLoading } = useQuery({
     queryKey: ["my-cars", user?.email],
     queryFn: async () => {
       const res = await axiosSecure(`/my-cars?email=${user.email}`);
       return res.data;
     },
   });
+
+  if (isLoading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <PrivateRoute>
