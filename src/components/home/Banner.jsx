@@ -13,7 +13,7 @@ const Banner = () => {
   const Button = dynamic(() => import("../shared/Button"), { ssr: false });
 
   const { scrollYProgress } = useScroll();
-  const x = useTransform(scrollYProgress, [0, 1], [0, 700]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, 1000]);
 
   const textVariant = {
     hidden: { opacity: 0, y: 30 },
