@@ -37,9 +37,9 @@ export default function NavBar() {
 
   return (
     <nav className="fixed py-2   md:border-b border-white/5 top-0 left-0 w-full md:backdrop-blur-lg shadow-sm z-50">
-      <div className="max-w-12/11 mx-auto px-4 lg:px-8 h-16 flex items-center justify-between">
+      <div className="relative flex items-center h-16 max-w-12/11 mx-auto px-4 lg:px-8 ">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold tracking-wide">
+        <Link href="/" className="text-2xl font-bold tracking-wide z-10">
           <Image
             src="/assets/logo_new.png"
             alt="CarXpress Logo"
@@ -49,7 +49,7 @@ export default function NavBar() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden text-[#666666] md:flex gap-8 text-[14px] font-medium">
+        <ul className="hidden md:flex gap-8 text-[#666666] text-[14px] font-medium absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
           {links.map((item) => (
             <li key={item.href}>
               <Link
@@ -66,7 +66,7 @@ export default function NavBar() {
 
         {/* Desktop Buttons */}
 
-        <div className="hidden md:flex gap-3">
+        <div className="hidden md:flex gap-3 ml-auto z-10">
           {loading ? (
             <div className="flex items-center justify-center">
               <Loader />
@@ -112,7 +112,7 @@ export default function NavBar() {
             </div>
           ) : (
             <>
-              <Link href="/login">
+              <Link className="z-100" href="/login">
                 <LoginBtn />
               </Link>
               <Link
@@ -127,7 +127,7 @@ export default function NavBar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden flex items-center cursor-pointer"
+          className="md:hidden flex items-center cursor-pointer ml-auto z-10"
           onClick={() => setOpen(true)}
         >
           <svg
