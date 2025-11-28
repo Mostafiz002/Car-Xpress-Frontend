@@ -10,11 +10,13 @@ import useAxiosSecure from "@/hooks/useAxiosSecure";
 import axios from "axios";
 import toast from "react-hot-toast";
 import useAuth from "@/hooks/useAuth";
+import { reload, sendEmailVerification } from "firebase/auth";
+import { auth } from "@/firebase/firebase.config";
 
 const Page = () => {
   const [fileName, setFileName] = useState("");
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -22,7 +24,17 @@ const Page = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    await reload(auth.currentUser);
+    setUser(auth.currentUser);
+    if (!auth.currentUser.emailVerified) {
+      await sendEmailVerification(auth.currentUser);
+      toast.error(
+        "A verification email has been sent. Please verify your email first!"
+      );
+      return;
+    }
+
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);

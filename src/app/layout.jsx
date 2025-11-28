@@ -25,7 +25,11 @@ export default function RootLayout({ children }) {
             <footer>
               <Footer />
             </footer>
-            <Toaster position="top-right" reverseOrder={false} />
+            <Toaster
+              position="top-right"
+              containerStyle={{ top: "70px" }}
+              reverseOrder={false}
+            />
           </AuthProvider>
         </QueryProvider>
       </body>
