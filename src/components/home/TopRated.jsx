@@ -33,7 +33,7 @@ const TopRated = () => {
         Explore our top-rated and most popular cars, handpicked to give you a
         premium rental experience.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 items-stretch">
         {cars.map((car, i) => (
           <CarCard
             key={car._id}

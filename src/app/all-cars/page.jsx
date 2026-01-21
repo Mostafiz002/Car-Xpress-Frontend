@@ -40,7 +40,7 @@ const Page = () => {
   const categories = ["BMW", "Audi", "Mercedes-Benz", "Nissan", "Mitsubishi"];
 
   return (
-    <div className="mt-20 max-w-[1300px] mx-auto px-4 py-24">
+    <div className="mt-20 max-w-[1332px] mx-auto px-4 py-24">
       <div className="flex flex-col items-center mb-12">
         <h2 className="section_heading text-center">Cars For Rent</h2>
         <p className="section_paragraph mt-4 text-center max-w-xl text-gray-300 text-lg">
@@ -131,7 +131,7 @@ const Page = () => {
           <Loader />
         </div>
       ) : (
-        <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div className="grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-8">
           <AnimatePresence>
             {cars.map((car, i) => (
               <motion.div
