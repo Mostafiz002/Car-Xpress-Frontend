@@ -13,7 +13,7 @@ const TopRated = () => {
   const { data: cars = [], isLoading } = useQuery({
     queryKey: ["limited-cars", user?.email],
     queryFn: async () => {
-      const res = await axios(`/cars?limit=6`);
+      const res = await axios(`/cars?limit=4`);
       return res.data;
     },
   });
